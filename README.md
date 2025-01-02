@@ -65,9 +65,29 @@ export default function Example() {
 
 The `ToastProvider` component is a wrapper for your app to enable toast notifications.
 
+### Props
+
+| Prop Name | Type   | Default      | Description                                                                                      |
+|-----------|--------|--------------|--------------------------------------------------------------------------------------------------|
+| position  | string | `"top-right"` | Defines where the toast notifications appear. Options: `"top-left"`, `"top-right"`, `"bottom-left"`, `"bottom-right"`. |
+
+
+```jsx
+<ToastProvider position="bottom-right">
+  <YourComponent />
+</ToastProvider>
+```
+
 ### useToast
 
 The `useToast` hook provides methods for displaying toast notifications.
+
+### Methods
+
+| Method                   | Parameters                                                                                   | Description                     |
+|--------------------------|-----------------------------------------------------------------------------------------------|---------------------------------|
+| `showToast(message, type)` | `message: string`<br>`type: "success" | "error" | "info"`                                  | Displays a toast notification. |
+
 
 ```jsx
 const {showToast} = useToast();
