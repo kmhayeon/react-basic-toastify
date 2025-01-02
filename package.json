@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "private": false,
   "description": "A simple toast notification component for React.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kmhayeon/react-hy-toast-component.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -29,7 +33,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "contributors" : ["kimhayeon"],
+  "contributors": [
+    "kimhayeon"
+  ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
