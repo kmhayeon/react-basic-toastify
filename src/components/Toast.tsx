@@ -6,8 +6,8 @@ export type ToastType = 'success' | 'error' | 'info';
 export interface ToastProps {
   message: string;
   type?: ToastType;
-  duration?: number; // 지속 시간 (ms)
-  onClose?: () => void; // 토스트 종료 시 콜백
+  duration?: number;
+  onClose?: () => void;
 }
 
 function Toast({ message, type = 'info', duration = 3000, onClose }: ToastProps) {
