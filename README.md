@@ -85,7 +85,7 @@ The `ToastProvider` component is a wrapper for your app to enable toast notifica
 
 The `useToast` hook provides methods for displaying toast notifications.
 
-### Methods
+#### Methods
 
 | Method                  | Parameters                               | Description                      |
 |-------------------------|-----------------------------------------|----------------------------------|
