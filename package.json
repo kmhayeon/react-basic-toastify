@@ -1,6 +1,6 @@
 {
   "name": "react-hy-toast-component",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "A simple toast notification component for React.",
   "repository": {
