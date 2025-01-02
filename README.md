@@ -85,16 +85,17 @@ The `ToastProvider` component is a wrapper for your app to enable toast notifica
 
 The `useToast` hook provides methods for displaying toast notifications.
 
-#### Methods
+### Methods
 
-| Method                   | Parameters                                                                                   | Description                     |
-|--------------------------|-----------------------------------------------------------------------------------------------|---------------------------------|
-| `showToast(message, type)` | `message: string`<br>`type: "success" | "error" | "info"`                                  | Displays a toast notification. |
+| Method                  | Parameters                               | Description                      |
+|-------------------------|-----------------------------------------|----------------------------------|
+| `showToast(message, type)` | `message: string`, `type: "success"` | Displays a toast notification.  |
 
-<br/>
+<br />
 
 ```jsx
-const {showToast} = useToast();
+const { showToast } = useToast();
+
 showToast('Operation successful!', 'success');
 showToast('An error occurred!', 'error');
 showToast('Here is some information.', 'info');
