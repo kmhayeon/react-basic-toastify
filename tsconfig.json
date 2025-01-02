@@ -4,14 +4,18 @@
     "typeRoots": ["./node_modules/@types", "./src/styles"],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es5",
+    "target": "ES6",
+    "module": "ESNext",
     "lib": ["dom", "es2015"],
     "jsx": "react",
     "moduleResolution": "node",
     "declaration": true,
     "declarationDir": "dist",
     "outDir": "dist",
-    "strict": true
+    "strict": true,
+    "importHelpers": true,
+    "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
