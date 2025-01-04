@@ -1,4 +1,4 @@
-# react-hy-toast-component
+# react-basic-toastify
 
 A lightweight and customizable toast notification library for React.
 
@@ -7,11 +7,11 @@ A lightweight and customizable toast notification library for React.
 Install the package via npm or yarn:
 
 ```bash
-npm install react-hy-toast-component
+npm install react-basic-toastify
 # or
-yarn add react-hy-toast-component
+yarn add react-basic-toastify
 # or
-pnpm add react-hy-toast-component
+pnpm add react-basic-toastify
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ The `ToastProvider` is required to enable toast notifications in your applicatio
 your app.
 
 ```jsx
-import {ToastProvider} from 'react-hy-toast-component';
+import {ToastProvider} from 'react-basic-toastify';
 
 export default function App() {
   return (
@@ -38,7 +38,7 @@ export default function App() {
 The toast object provides methods for displaying notifications. You can use it in any child component of the ToastProvider.
 
 ```jsx
-import { toast } from 'react-hy-toast-component';
+import { toast } from 'react-basic-toastify';
 
 export default function Example() {
   return (
@@ -79,7 +79,7 @@ The `ToastProvider` component is a wrapper for your app to enable toast notifica
 
 <br/>
 
-### `toast` Object
+### `toast Object`
 
 The `toast` object provides methods for displaying toast notifications.
 
@@ -91,7 +91,7 @@ The `toast` object provides methods for displaying toast notifications.
 | `toast.error(message, duration, showCloseButton)`   | `message: string`, `duration?: number`, `showCloseButton?: boolean` | Displays an error notification.     |
 | `toast.info(message, duration, showCloseButton)`    | `message: string`, `duration?: number`, `showCloseButton?: boolean` | Displays an info notification.      |
 
-### Parameters
+#### Parameters
 
 | Parameter         | Type     | Default  | Description                                                        |
 |-------------------|----------|----------|--------------------------------------------------------------------|
@@ -102,7 +102,7 @@ The `toast` object provides methods for displaying toast notifications.
 #### Example:
 
 ```jsx
-import { toast } from 'react-hy-toast-component';
+import { toast } from 'react-basic-toastify';
 
 toast.success('Operation successful!', 5000, true);
 toast.error('An error occurred!', 4000);
@@ -139,7 +139,7 @@ Here’s how you can use the library in a complete setup:
 
 ```jsx
 import React from 'react';
-import { ToastProvider, toast } from 'react-hy-toast-component';
+import { ToastProvider, toast } from 'react-basic-toastify';
 
 function App() {
   return (

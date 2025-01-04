@@ -1,45 +1,90 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import Toast from './Toast';
+import styles from '../styles/ToastProvider.module.css';
 
-type ToastContextType = {
-  showToast: (message: string, type?: 'success' | 'error' | 'info') => void;
+type ToastType = 'success' | 'error' | 'info';
+
+interface ToastData {
+  id: number;
+  message: string;
+  type: ToastType;
+  duration: number;
+  showCloseButton: boolean;
+}
+
+type ToastFunction = (
+  message: string,
+  duration?: number,
+  showCloseButton?: boolean
+) => void;
+
+export const toast = {
+  success: (() => {}) as ToastFunction,
+  error: (() => {}) as ToastFunction,
+  info: (() => {}) as ToastFunction,
 };
-
-const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 export interface ToastProviderProps {
   children: ReactNode;
+  position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
 }
 
-export function ToastProvider({ children }: ToastProviderProps) {
-  const [toasts, setToasts] = useState<
-    { id: number; message: string; type?: 'success' | 'error' | 'info' }[]
-  >([]);
+export function ToastProvider({ children, position = 'top-right' }: ToastProviderProps) {
+  const [toasts, setToasts] = useState<ToastData[]>([]);
 
-  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
+  const createToast = (type: ToastType) => (
+    message: string,
+    duration = 3000,
+    showCloseButton = true
+  ) => {
     const id = Date.now();
-    setToasts((prev) => [...prev, { id, message, type }]);
-    setTimeout(() => {
-      setToasts((prev) => prev.filter((toast) => toast.id !== id));
-    }, 3000);
+    setToasts((prev) => [...prev, { id, message, type, duration, showCloseButton }]);
+    if (duration > 0) {
+      setTimeout(() => {
+        setToasts((prev) => prev.filter((toast) => toast.id !== id));
+      }, duration);
+    }
+  };
+
+  useEffect(() => {
+    toast.success = createToast('success');
+    toast.error = createToast('error');
+    toast.info = createToast('info');
+  }, []);
+
+  const getPositionClass = () => {
+    switch (position) {
+      case 'top-left':
+        return styles.topLeft;
+      case 'top-center':
+        return styles.topCenter;
+      case 'top-right':
+        return styles.topRight;
+      case 'bottom-left':
+        return styles.bottomLeft;
+      case 'bottom-center':
+        return styles.bottomCenter;
+      case 'bottom-right':
+        return styles.bottomRight;
+      default:
+        return styles.topRight;
+    }
   };
 
   return (
-    <ToastContext.Provider value={{ showToast }}>
+    <>
       {children}
-      <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 1000 }}>
+      <div className={`${styles.toastContainer} ${getPositionClass()}`}>
         {toasts.map((toast) => (
-          <Toast key={toast.id} message={toast.message} type={toast.type} />
+          <Toast
+            key={toast.id}
+            message={toast.message}
+            type={toast.type}
+            showCloseButton={toast.showCloseButton}
+            onClose={() => setToasts((prev) => prev.filter((t) => t.id !== toast.id))}
+          />
         ))}
       </div>
-    </ToastContext.Provider>
+    </>
   );
-}
-
-export function useToast() {
-  const context = useContext(ToastContext);
-  if (!context) {
-    throw new Error('useToast must be used within a ToastProvider');
-  }
-  return context;
 }

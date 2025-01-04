@@ -1,11 +1,11 @@
 {
-  "name": "react-hy-toast-component",
-  "version": "1.0.3",
+  "name": "react-basic-toastify",
+  "version": "3.0.0",
   "private": false,
   "description": "A simple toast notification component for React.",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kmhayeon/react-hy-toast-component.git"
+    "url": "git://github.com/kmhayeon/react-basic-toastify.git"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
