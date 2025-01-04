@@ -33,35 +33,34 @@ export default function App() {
 }
 ```
 
-### Step 2:Use `useToast` to show notifications
+### Step 2: Use the `toast` object to show notifications
 
-The useToast hook allows you to display toast notifications. Use it inside any child component of the ToastProvider.
+The toast object provides methods for displaying notifications. You can use it in any child component of the ToastProvider.
 
 ```jsx
-import {useToast} from 'react-hy-toast-component';
+import { toast } from 'react-hy-toast-component';
 
 export default function Example() {
-  const {showToast} = useToast();
-  
   return (
     <div>
-      <button onClick={() => showToast('This is a success message!', 'success')}>
+      <button onClick={() => toast.success('This is a success message!')}>
         Show Success Toast
       </button>
-      <button onClick={() => showToast('This is an error message!', 'error')}>
+      <button onClick={() => toast.error('This is an error message!')}>
         Show Error Toast
       </button>
-      <button onClick={() => showToast('This is an info message!', 'info')}>
+      <button onClick={() => toast.info('This is an info message!')}>
         Show Info Toast
       </button>
     </div>
   );
 }
+
 ```
 
 ## API
 
-### ToastProvider
+### `ToastProvider`
 
 The `ToastProvider` component is a wrapper for your app to enable toast notifications.
 
@@ -71,8 +70,7 @@ The `ToastProvider` component is a wrapper for your app to enable toast notifica
 |-----------|--------|--------------|--------------------------------------------------------------------------------------------------|
 | position  | string | `"top-right"` | Defines where the toast notifications appear. Options: `"top-left"`, `"top-right"`, `"bottom-left"`, `"bottom-right"`. |
 
-<br/>
-
+#### Example:
 ```jsx
 <ToastProvider position="bottom-right">
   <YourComponent />
@@ -81,24 +79,34 @@ The `ToastProvider` component is a wrapper for your app to enable toast notifica
 
 <br/>
 
-### useToast
+### `toast` Object
 
-The `useToast` hook provides methods for displaying toast notifications.
+The `toast` object provides methods for displaying toast notifications.
 
 #### Methods
 
-| Method                  | Parameters                               | Description                      |
-|-------------------------|-----------------------------------------|----------------------------------|
-| `showToast(message, type)` | `message: string`, `type: "success"` | Displays a toast notification.  |
+| Method                            | Parameters                                                    | Description                          |
+|-----------------------------------|--------------------------------------------------------------|--------------------------------------|
+| `toast.success(message, duration, showCloseButton)` | `message: string`, `duration?: number`, `showCloseButton?: boolean` | Displays a success notification.    |
+| `toast.error(message, duration, showCloseButton)`   | `message: string`, `duration?: number`, `showCloseButton?: boolean` | Displays an error notification.     |
+| `toast.info(message, duration, showCloseButton)`    | `message: string`, `duration?: number`, `showCloseButton?: boolean` | Displays an info notification.      |
 
-<br />
+### Parameters
+
+| Parameter         | Type     | Default  | Description                                                        |
+|-------------------|----------|----------|--------------------------------------------------------------------|
+| `message`         | `string` | (none)   | The text to display in the toast notification.                    |
+| `duration`        | `number` | `3000`   | The time in milliseconds before the toast disappears automatically.|
+| `showCloseButton` | `boolean`| `true`   | Whether to show the close button in the toast notification.        |
+
+#### Example:
 
 ```jsx
-const { showToast } = useToast();
+import { toast } from 'react-hy-toast-component';
 
-showToast('Operation successful!', 'success');
-showToast('An error occurred!', 'error');
-showToast('Here is some information.', 'info');
+toast.success('Operation successful!', 5000, true);
+toast.error('An error occurred!', 4000);
+toast.info('Here is some information.', 3000, false);
 ```
 
 ## Customizing Styles
@@ -131,24 +139,28 @@ Here’s how you can use the library in a complete setup:
 
 ```jsx
 import React from 'react';
-import {ToastProvider, useToast} from 'react-hy-toast-component';
+import { ToastProvider, toast } from 'react-hy-toast-component';
 
 function App() {
   return (
     <ToastProvider position="top-right">
-      <Example/>
+      <Example />
     </ToastProvider>
   );
 }
 
 function Example() {
-  const {showToast} = useToast();
-  
   return (
     <div>
-      <button onClick={() => showToast('Success!', 'success')}>Show Success Toast</button>
-      <button onClick={() => showToast('Error!', 'error')}>Show Error Toast</button>
-      <button onClick={() => showToast('Info!', 'info')}>Show Info Toast</button>
+      <button onClick={() => toast.success('Success!', 5000, true)}>
+        Show Success Toast
+      </button>
+      <button onClick={() => toast.error('Error!', 4000, true)}>
+        Show Error Toast
+      </button>
+      <button onClick={() => toast.info('Info!', 3000, false)}>
+        Show Info Toast
+      </button>
     </div>
   );
 }
